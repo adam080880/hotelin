@@ -44,3 +44,6 @@ Route::get('/books/{status}', 'BookMaster@getByStatus'); //admin
 // Success
 Route::post('/check_in', 'TransactionMaster@check_in'); //admin
 Route::post('/check_out', 'TransactionMaster@check_out'); //admin
+
+Route::get('/transactions', 'TransactionMaster@transactions');
+Route::get('/transactions/{in}', 'TransactionMaster@getByStatus');

@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::view('/type', 'admin/type');
+Route::view('/transaction', 'admin/transaction');

@@ -18,6 +18,22 @@ class TransactionMaster extends Controller
         $this->admin = Admin::find(1);
     }
 
+    public function transactions()
+    {
+        return response()->json(Transaction::paginate(10));
+    }
+
+    public function getByStatus($in)
+    {
+        if(!($in == "in" || $in == "out")) {
+            return response()->json([
+                'message' => 'error'
+            ], 400);
+        }
+
+        return response()->json(Transaction::where('status', $in)->paginate(10));
+    }
+
     public function check_in(Request $req)
     {
         $request = Validator::make($req->all(), [

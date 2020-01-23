@@ -74,8 +74,14 @@ class MasterRoom extends Controller
 
     public function get()
     {
+        $res = Room::orderBy('code_ruangan')->orderBy('type_id')->paginate(10);
+
+        foreach($res as $result) {
+            $result->type;
+        }
+
         return response()->json(
-            Room::get()
+            $res
         , 200);
     }
 
@@ -85,7 +91,7 @@ class MasterRoom extends Controller
             if(!($status == "empty" || $status == "booked" || $status == "filled"))  {
                 throw new \Exception("status is not valid");
             }
-            $data = Room::where('status', $status)->get();
+            $data = Room::where('status', $status)->paginate(10);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'failed',
