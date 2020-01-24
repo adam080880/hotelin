@@ -96,7 +96,7 @@ class BookMaster extends Controller
 
         foreach($books as $book) {
             $book->user;
-            $book->room;
+            $book->room->type;
         }
 
         return response()->json($books);
@@ -112,7 +112,7 @@ class BookMaster extends Controller
 
             foreach($books as $book) {
                 $book->user;
-                $book->room;
+                $book->room->type;
             }
         } catch (\Exception $e) {
             return response()->json([
